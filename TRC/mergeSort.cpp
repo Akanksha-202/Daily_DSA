@@ -116,8 +116,8 @@ int main(){
     printLL(head,5); //40 is added to first and then 50 is added to first => 50 40 30 20 10
     cout<<"Head: "<<head->data<<endl; 
 
-    mergeSort(head);
-    printLL(head,5);
+    // mergeSort(head);
+    // printLL(head,5);
 
     return 0;
 }
