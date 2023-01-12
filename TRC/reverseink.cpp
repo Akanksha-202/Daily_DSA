@@ -12,6 +12,9 @@ class Node{
     }
 };
 
+Node* th = NULL;
+Node* tt = NULL;
+
 void printLL(Node* &head, int n){
 
     Node* temp = head;
@@ -22,11 +25,75 @@ void printLL(Node* &head, int n){
     cout<<endl;
 }
 
+
 void addFirst(Node* &head, int d){
     Node* first = new Node(d);
     first->next = head;
     head = first;
 }
+
+int sizeL(Node* head){
+    Node* temp = head;
+    int size = 1;
+    while(temp->next!=NULL){
+        temp = temp->next;
+        size++;
+    }
+
+    return size;
+}
+
+void addFirstRev(Node* node){
+    if(th==NULL){
+        th = node;
+        tt = node;
+    }
+    else{
+        node->next = th;
+        th = node;
+    }
+}
+
+void kgroup(Node* head,int k){
+
+    int size;
+    size = sizeL(head);
+    int n = size;
+    Node* c = head;
+    Node* f = head->next;
+
+    Node* oh = NULL;
+    Node* ot = NULL;
+
+    while(size > k){
+        int cnt = k;
+        while(cnt){
+            addFirstRev(c);
+            c = f;
+            f = f->next;
+            cnt--;
+            size--;
+        }
+
+        if(oh==NULL){
+            oh = th;
+            ot = tt;
+        }
+        else{
+            ot->next = th;
+            ot = tt;
+        }
+
+        th = NULL;
+        tt = NULL;
+    
+    }
+
+    ot->next = c;
+
+    printLL(oh,n);    
+}
+
 
 int main(){
 
@@ -43,6 +110,8 @@ int main(){
     addFirst(head,50);
     printLL(head,5); //40 is added to first and then 50 is added to first => 50 40 30 20 10
     cout<<"Head: "<<head->data<<endl;
+
+    kgroup(head,3);
 
     
 
