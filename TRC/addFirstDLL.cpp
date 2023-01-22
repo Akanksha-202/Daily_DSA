@@ -77,6 +77,22 @@ void removeLast(Node* &head, Node* &tail){
     }
 }
 
+int getFirst(Node* &head, Node* &tail){
+    if(head==NULL){
+        cout<<"Empty Linked List";
+        return -1;
+    }
+    return head->data;
+}
+
+int getLast(Node* &head, Node* &tail){
+    if(tail==NULL){
+        cout<<"Empty Linked List";
+        return -1;
+    }
+    return tail->data;
+}
+
 int main(){
 
     addfirst(head,tail,20);
@@ -97,6 +113,9 @@ int main(){
 
     removeLast(head,tail);
     printLL(head);
+
+    cout<<"First element is: "<<getFirst(head,tail)<<endl;
+    cout<<"Last element is: "<<getLast(head,tail)<<endl;
 
 
     return 0;
