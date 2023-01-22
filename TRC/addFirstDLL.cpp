@@ -38,6 +38,7 @@ int len(Node* head){
         cnt++;
     }
     return cnt;
+    //size of ll is cnt+1
 }
 
 void addfirst(Node* &head, Node* &tail,int d){
@@ -52,6 +53,22 @@ void addfirst(Node* &head, Node* &tail,int d){
         node->next = head;
         head->prev = node;
         head = node;
+    }
+    
+}
+
+void addLast(Node* &head, Node* &tail,int d){
+
+    Node* node = new Node(d);
+
+    if(tail==NULL){
+        head = node;
+        tail = node;
+    }
+    else{
+        tail->next = node;
+        node->prev = tail;
+        tail = node;
     }
     
 }
@@ -118,6 +135,39 @@ int getAtIndex(Node* &head, Node* &tail,int index,int len){
     return temp->data;
 }
 
+void addAtIndex(Node* &head, Node* &tail,int index,int d,int len){
+
+    if(index < 0 || index > len){
+        cout<<"Invalid!";
+    }
+
+    if(index == 1){
+        addfirst(head,tail,d);
+    }
+
+    if(index == len+1){
+        addLast(head,tail,d);
+    }
+
+    else{
+        int cnt = 0;
+        Node* temp = head;
+        while(cnt < index){
+            cnt++;
+            temp = temp->next;
+        }
+
+        Node* node = new Node(d);
+
+        Node* back = temp->prev;
+        back->next = node;
+        node->next = temp;
+        node->prev = back;
+        temp->prev = node;
+    }
+
+
+}
 
 int main(){
 
@@ -157,6 +207,10 @@ int main(){
     cout<<"Element at 5 index is: "<<getAtIndex(head,tail,5,size)<<endl;
     cout<<"Element at 3 index is: "<<getAtIndex(head,tail,3,size)<<endl;
     cout<<"Element at 2 index is: "<<getAtIndex(head,tail,2,size)<<endl;
+
+
+    addAtIndex(head,tail,4,65,size);
+    printLL(head);
 
 
 
