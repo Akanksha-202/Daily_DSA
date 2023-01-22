@@ -46,6 +46,22 @@ void addfirst(Node* &head, Node* &tail,int d){
     
 }
 
+void removeFirst(Node* &head, Node* &tail){
+
+    if(head==NULL){
+        cout<<"Empty Doubly Linked List";
+    }
+    if(head->next == NULL){
+        head = tail = NULL;
+    }
+    else{
+        Node* temp = head;
+        head = temp->next;
+        head->prev = NULL;
+        free(temp);
+    }
+}
+
 int main(){
 
     addfirst(head,tail,20);
@@ -60,6 +76,16 @@ int main(){
 
     cout<<"Second value is: "<<head->next->data<<endl;
     cout<<"Second last value is: "<<tail->prev->data<<endl;
+
+    removeFirst(head,tail);
+    printLL(head);
+
+    cout<<"Head is: "<<head->data<<endl;
+    cout<<"Tail is: "<<tail->data<<endl;
+
+    cout<<"Second value is: "<<head->next->data<<endl;
+    cout<<"Second last value is: "<<tail->prev->data<<endl;
+
 
     return 0;
 }
