@@ -141,7 +141,7 @@ void addAtIndex(Node* &head, Node* &tail,int index,int d,int len){
         cout<<"Invalid!";
     }
 
-    if(index == 1){
+    if(index == 0){
         addfirst(head,tail,d);
     }
 
