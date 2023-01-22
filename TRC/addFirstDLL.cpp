@@ -166,7 +166,35 @@ void addAtIndex(Node* &head, Node* &tail,int index,int d,int len){
         temp->prev = node;
     }
 
+}
 
+void removeAtIndex(Node* &head, Node* &tail,int index,int len){
+
+    if(index < 0 || index > len){
+        cout<<"Invalid!";
+    }
+
+    if(index == 0){
+        removeFirst(head,tail);
+    }
+
+    if(index == len){
+        removeLast(head,tail);
+    }
+
+    else{
+        int cnt = 0;
+        Node* temp = head;
+        while(cnt < index){
+            cnt++;
+            temp = temp->next;
+        }
+
+        Node* back = temp->prev;
+        Node* forw = temp->next;
+        back->next = forw;
+        forw->prev = back;
+    }
 }
 
 int main(){
@@ -210,6 +238,10 @@ int main(){
 
 
     addAtIndex(head,tail,4,65,size);
+    printLL(head);
+    size = len(head);
+
+    removeAtIndex(head,tail,3,size);
     printLL(head);
 
 
