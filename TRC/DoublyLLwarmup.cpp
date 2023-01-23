@@ -305,6 +305,26 @@ void removeNode(Node* &node, Node* &head, Node* &tail){
 
 }
 
+void displayForward(Node* &head, Node* &tail){
+
+    Node* temp = head;
+    while(temp!=tail){
+        cout<<temp->data<<",";
+        temp = temp->next;
+    }
+    cout<<temp->data<<endl;
+}
+
+void displayBackward(Node* &head, Node* &tail){
+
+    Node* temp = tail;
+    while(temp!=head){
+        cout<<temp->data<<",";
+        temp = temp->prev;
+    }
+    cout<<temp->data<<endl;
+}
+
 int main(){
 
     addfirst(head,tail,20);
@@ -445,11 +465,11 @@ int main(){
 
     cout<<"Removing Node Function:"<<endl;
 
-    refnode = head;
-    removeNode(refnode,head,tail);
-    cout<<"Removing head of the doubly Linked List"<<endl;
-    printLL(head);
-    cout<<"Updated head: "<<head->data<<endl;  
+    // refnode = head;
+    // removeNode(refnode,head,tail);
+    // cout<<"Removing head of the doubly Linked List"<<endl;
+    // printLL(head);
+    // cout<<"Updated head: "<<head->data<<endl;  
     
     
 
@@ -463,6 +483,13 @@ int main(){
     removeNode(refnode,head,tail);
     cout<<"Removing a random node(3rd index)"<<endl;
     printLL(head);
+
+    cout<<"////////////Display Forward//////////"<<endl;
+
+    displayForward(head,tail);
+
+    cout<<"////////////Display Backward//////////"<<endl;
+    displayBackward(head,tail);
 
 
     return 0;
