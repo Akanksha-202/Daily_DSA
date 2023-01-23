@@ -197,6 +197,44 @@ void removeAtIndex(Node* &head, Node* &tail,int index,int len){
     }
 }
 
+void addBefore(Node* &node, Node* & head, Node* &tail, int d ){
+    
+    Node* node1 = new Node(d);
+
+    if(node==head){
+        node1->next = head;
+        head->prev = node1;
+        head = node1;
+    }
+
+    else{
+        Node* back = node->prev;
+        back->next = node1;
+        node1->prev =back;
+        node1->next =node;
+        node->prev = node1;
+    }
+}
+
+void addAfter(Node* &node, Node* & head, Node* &tail, int d ){
+    
+    Node* node1 = new Node(d);
+
+    if(node==tail){
+        tail->next = node1;
+        node1->prev = tail;
+        tail = node1;
+    }
+
+    else{
+        Node* follow = node->next;
+        node->next = node1;
+        node1->prev =node;
+        node1->next = follow;
+        follow->prev = node1;
+    }
+}
+
 int main(){
 
     addfirst(head,tail,20);
@@ -244,6 +282,44 @@ int main(){
     removeAtIndex(head,tail,3,size);
     printLL(head);
 
+    cout<<"Add Before Function:"<<endl;
+    Node* refnode = tail;
+    addBefore(refnode,head,tail,46);
+    cout<<"Adding 46 node before tail: "<<endl;
+    printLL(head);
+
+    refnode = head;
+    addBefore(refnode,head,tail,59);
+    cout<<"Adding 59 node before head: "<<endl;
+    printLL(head);
+    cout<<"Updated head: "<<head->data<<endl;
+
+    refnode= head->next->next;
+    addBefore(refnode,head,tail,86);
+    cout<<"Adding 86 node before some random node(2 index): "<<endl;
+    printLL(head);
+
+    cout<<endl;
+    cout<<"///////////////////////////////////////////////////";
+    cout<<endl;
+
+    cout<<"Add After Function:"<<endl;
+    refnode = tail;
+    addAfter(refnode,head,tail,90);
+    cout<<"Adding 90 node after tail: "<<endl;
+    printLL(head);
+    cout<<"Updated tail: "<<tail->data<<endl;
+
+    refnode = head;
+    addAfter(refnode,head,tail,22);
+    cout<<"Adding 22 node after head: "<<endl;
+    printLL(head);
+    
+
+    refnode= head->next->next;
+    addAfter(refnode,head,tail,37);
+    cout<<"Adding 37 node after some random node(2 index): "<<endl;
+    printLL(head);
 
 
     return 0;
