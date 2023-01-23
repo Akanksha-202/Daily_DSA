@@ -235,6 +235,50 @@ void addAfter(Node* &node, Node* & head, Node* &tail, int d ){
     }
 }
 
+void removeAfter(Node* &node , Node* &head, Node* &tail){
+
+    //Case 1 -> reference Node = tail, therefore node node after that to remove
+    if(node==tail){
+        cout<<"Invalid!!\nNo Node after tail(reference node) to remove"<<endl;
+    }
+
+    //Case 2 -> reference node =tail->prev, therefore tail moght get lost if it's removed
+    if(node == tail->prev){
+        Node* temp = tail;
+        tail = tail->prev;
+        tail->next = NULL;
+        free(temp);
+    }
+
+    else{
+        Node* follow = node->next->next;
+        node->next = follow;
+        follow->prev = node;
+    }
+}
+
+void removeBefore(Node* &node , Node* &head, Node* &tail){
+
+    //Case 1 -> reference Node = head, therefore node node before that to remove
+    if(node==head){
+        cout<<"Invalid!!\nNo Node before head(reference node) to remove"<<endl;
+    }
+
+    //Case 2 -> reference node =head->next, therefore head might get lost if it's removed
+    if(node == head->next){
+        Node* temp = head;
+        head = head->next;
+        head->prev =NULL;
+        free(temp);
+    }
+
+    else{
+        Node* back = node->prev->prev;
+        back->next = node;
+        node->prev = back;
+    }
+}
+
 int main(){
 
     addfirst(head,tail,20);
@@ -319,6 +363,53 @@ int main(){
     refnode= head->next->next;
     addAfter(refnode,head,tail,37);
     cout<<"Adding 37 node after some random node(2 index): "<<endl;
+    printLL(head);
+
+    cout<<endl;
+    cout<<"///////////////////////////////////////////////////";
+    cout<<endl;
+
+    cout<<"Remove After Function:"<<endl;
+
+    // refnode = tail;
+    // removeAfter(refnode,head,tail);
+    // cout<<"Remove node after tail: "<<endl;
+    // printLL(head);
+    // cout<<"Updated tail: "<<tail->data<<endl;
+
+    refnode = tail->prev;
+    removeAfter(refnode,head,tail);
+    cout<<"Removing the tail: "<<endl;
+    printLL(head);
+    cout<<"Updated tail: "<<tail->data<<endl;
+    
+
+    refnode = head->next->next;
+    removeAfter(refnode,head,tail);
+    cout<<"Removing the node after random node (2 index): "<<endl;
+    printLL(head);
+
+    cout<<endl;
+    cout<<"///////////////////////////////////////////////////";
+    cout<<endl;
+
+    cout<<"Remove Before Function:"<<endl;
+
+    // refnode = head;
+    // removeBefore(refnode,head,tail);
+    // cout<<"Remove node before head: "<<endl;
+    // printLL(head);
+
+    refnode = head->next;
+    removeBefore(refnode,head,tail);
+    cout<<"Removing the head: "<<endl;
+    printLL(head);
+    cout<<"Updated head: "<<head->data<<endl;
+    
+
+    refnode = head->next->next;
+    removeBefore(refnode,head,tail);
+    cout<<"Removing the node before random node (2 index): "<<endl;
     printLL(head);
 
 
