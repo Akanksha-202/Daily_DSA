@@ -279,7 +279,31 @@ void removeBefore(Node* &node , Node* &head, Node* &tail){
     }
 }
 
+void removeNode(Node* &node, Node* &head, Node* &tail){
 
+    Node* temp = node;
+
+    if(node == head){
+        head = head->next; 
+        head->prev = NULL;     
+    }
+
+    if(node==tail){
+        tail = tail->prev;
+        tail->next = NULL;
+    }
+    
+    else{
+        Node* back = node->prev;
+        Node* follow = node->next;
+
+        back->next = follow;
+        follow->prev = back;
+    }
+
+    free(temp);
+
+}
 
 int main(){
 
@@ -413,8 +437,32 @@ int main(){
     removeBefore(refnode,head,tail);
     cout<<"Removing the node before random node (2 index): "<<endl;
     printLL(head);
+    
 
+    cout<<endl;
+    cout<<"///////////////////////////////////////////////////";
+    cout<<endl;
 
+    cout<<"Removing Node Function:"<<endl;
+
+    refnode = head;
+    removeNode(refnode,head,tail);
+    cout<<"Removing head of the doubly Linked List"<<endl;
+    printLL(head);
+    cout<<"Updated head: "<<head->data<<endl;  
+    
+    
+
+    refnode = tail;
+    removeNode(refnode,head,tail);
+    cout<<"Removing tail of the doubly Linked List"<<endl;
+    printLL(head);
+    cout<<"Updated tail: "<<tail->data<<endl;
+
+    refnode = head->next->next->next;
+    removeNode(refnode,head,tail);
+    cout<<"Removing a random node(3rd index)"<<endl;
+    printLL(head);
 
 
     return 0;
