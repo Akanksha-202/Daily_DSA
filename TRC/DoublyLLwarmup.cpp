@@ -279,6 +279,8 @@ void removeBefore(Node* &node , Node* &head, Node* &tail){
     }
 }
 
+
+
 int main(){
 
     addfirst(head,tail,20);
@@ -411,6 +413,8 @@ int main(){
     removeBefore(refnode,head,tail);
     cout<<"Removing the node before random node (2 index): "<<endl;
     printLL(head);
+
+
 
 
     return 0;
