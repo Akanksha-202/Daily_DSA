@@ -1,6 +1,1 @@
-class LinkedList {
-//     public:
-//     int 
-
-
-// };
+int Employee :: count; 
